@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-text-field
+      id="searchField"
       v-model="getValue"
       :label="label"
       append-icon="mdi-magnify"
@@ -25,6 +26,7 @@
       value: {
         type: String,
         required: true,
+        default: ''
       },
     },
     data: () => ({

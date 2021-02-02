@@ -6,6 +6,7 @@
       "@/*": ["src/*"],
       "Arch/*": ["src/app/arch/*"],
       "App/*": ["src/app/*"],
+      "Domain/*": ["src/domain/*"],
       "Modules/*": ["src/app/modules/*"],
       "Assets/*": ["src/assets/*"],
       "Locales/*": ["src/locales/*"],

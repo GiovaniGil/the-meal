@@ -36,7 +36,13 @@
       </v-btn>
     </v-card-actions>
 
-    <v-expand-transition>
+    <meal-instructions-dialog 
+      :dialog.sync="show" 
+      :key="strMeal" 
+      :strMeal="strMeal"
+      :strInstructions="strInstructions"
+    />
+    <!-- <v-expand-transition>
       <div v-show="show">
         <v-divider></v-divider>
 
@@ -44,12 +50,17 @@
           {{ strInstructions }}
         </v-card-text>
       </div>
-    </v-expand-transition>
+    </v-expand-transition> -->
   </v-card>
 </template>
 <script>
+  import MealInstructionsDialog from './MealInstructionsDialog.vue';
+
   export default {
     name: 'MealCard',
+    components: {
+      MealInstructionsDialog,
+    },
     props: {
       strMeal: {
         type: String,
