@@ -22,13 +22,13 @@ function factory(dialog) {
 }
 
 describe('MealInstructionsDialog.vue', () => {
-  it('Is a Vue Instance', () => {
+  it('It is a Vue Instance', () => {
     const wrapper = factory();
     expect(wrapper).toBeTruthy();
     wrapper.destroy();
   });
 
-  it('verifying if its emiting event when canceling', async () => {
+  it('verifying if it is emiting event when canceling', async () => {
     const dialog = false;
     const wrapper = factory(dialog);
     const cancelSpy = jest.spyOn(wrapper.vm, 'cancel');

@@ -19,7 +19,7 @@ function factory(mocks) {
 }
 
 describe('MealCard.vue', () => {
-  it('Is a Vue Instance', () => {
+  it('It is a Vue Instance', () => {
     const wrapper = factory();
     expect(wrapper).toBeTruthy();
     wrapper.destroy();

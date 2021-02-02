@@ -1,4 +1,4 @@
-const BASE_API_URL = '/'; // default
+const BASE_API_URL = 'http://localhost:3000'; // default
 module.exports = {
   BASE_API_URL,
   install: (Vue, config) => {

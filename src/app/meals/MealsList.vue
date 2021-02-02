@@ -1,21 +1,37 @@
 <template>
     <div>
-      <v-container>
-        <v-row>
-          <v-col sm="12" md="3" lg="4">
-            <meals-search @search="search" v-model="strSearch"/>
-          </v-col>
-        </v-row>
-        <v-fade-transition mode="out-in">
+      <v-container 
+        class="fill-height"
+        style="margin-bottom: 40px"
+      >
+        <v-layout
+          column
+        >
           <v-row>
-            <v-col 
+               <v-app-bar
+                app height="80px"
+                color="white"
+              >
+                  <v-toolbar-title>
+                    The Meal
+                  </v-toolbar-title>
+                  <v-spacer></v-spacer>
+                  <meals-search
+                    @search="search"
+                    v-model="strSearch"
+                    class="mx-8"
+                  />
+                </v-app-bar>
+          </v-row>
+          <v-row>
+            <v-col
               v-for="meal in items"
               cols="12"
               sm="12"
               md="4"
               :key="meal.id"
             >
-              <meal-card 
+              <meal-card
                 :strArea="meal.strArea"
                 :strMeal="meal.strMeal"
                 :strMealThumb="meal.strMealThumb"
@@ -24,8 +40,27 @@
               />
             </v-col>
           </v-row>
-        </v-fade-transition>
+        </v-layout>
       </v-container>
+      <v-footer padless>
+        <v-layout
+          align-baseline
+          justify-center
+          my-8
+          py-7
+        >
+          <v-flex
+            shrink
+          >
+            <v-pagination
+              v-model="pagination.page"
+              :length="pages"
+              :total-visible="7"
+              circle
+            />
+          </v-flex>
+        </v-layout>
+      </v-footer>
     </div>
 </template>
 
@@ -44,6 +79,10 @@ export default {
       items: [],
       strSearch: '',
       error: '',
+      pagination: {
+        page: 1,
+      },
+      pages: 0,
     }),
     methods: {
       search() {
@@ -51,16 +90,11 @@ export default {
       },
       getMeals() {
         const loader = this.$loading.show();
-        if(!this.strSearch) {
-          this.items = [];
-          loader.hide();
-          return;
-        }
-
         MealsRequest
-          .list( { s: this.strSearch} )
+          .list( this.strSearch, { currentPage: this.pagination.page } )
           .then((response) => {
             const { data } = response;
+            this.pages = data.pages;
             this.items = data.meals;
           })
           .catch(({ error }) => {
@@ -73,12 +107,20 @@ export default {
           });    
       },
     },
+    watch: {
+      strSearch: {
+        handler() {
+          this.pagination.page = 1;
+        },
+      },
+      'pagination.page': {
+        handler() {
+          this.getMeals();
+        },
+      },
+    },
     created() {
       this.getMeals();
     }
 };
 </script>
-
-<style lang="sass" scoped>
-
-</style>

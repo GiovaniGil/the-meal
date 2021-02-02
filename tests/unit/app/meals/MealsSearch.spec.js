@@ -21,7 +21,7 @@ function factory(value) {
 }
 
 describe('MealsSearch.vue', () => {
- it('Is a Vue Instance', () => {
+ it('It is a Vue Instance', () => {
    const wrapper = factory();
    expect(wrapper).toBeTruthy();
    wrapper.destroy();
@@ -32,7 +32,7 @@ describe('MealsSearch.vue', () => {
     const getDataSpy = jest.spyOn(wrapper.vm, 'setSearch');
     const inputSearch = wrapper.find('#searchField');
     
-    inputSearch.trigger('blur');
+    inputSearch.trigger('keyup.enter');
     await wrapper.vm.$nextTick();
 
     expect(getDataSpy).toBeCalled();

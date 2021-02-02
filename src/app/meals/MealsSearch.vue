@@ -10,7 +10,6 @@
       outlined
       clearable
       @keyup.enter.native="setSearch()"
-      @blur="setSearch()"
     />
   </div>
 </template>

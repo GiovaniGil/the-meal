@@ -23,16 +23,7 @@
         text
         @click="show = !show"
       >
-        Details
-      </v-btn>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        icon
-        @click="show = !show"
-      >
-        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+        Instructions
       </v-btn>
     </v-card-actions>
 
@@ -42,15 +33,6 @@
       :strMeal="strMeal"
       :strInstructions="strInstructions"
     />
-    <!-- <v-expand-transition>
-      <div v-show="show">
-        <v-divider></v-divider>
-
-        <v-card-text>
-          {{ strInstructions }}
-        </v-card-text>
-      </div>
-    </v-expand-transition> -->
   </v-card>
 </template>
 <script>

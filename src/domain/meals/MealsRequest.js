@@ -1,7 +1,13 @@
 import CrudRequest from 'Arch/crud/CrudRequest';
+import http from 'Arch/services/HttpService';
 
 export default class MealsRequest extends CrudRequest {
   static baseUrl() {
-    return 'https://www.themealdb.com/api/json/v1/1/search.php';
+    return '/v1/meals';
+  }
+  static list(search, queryParams = {}) {
+    return http.get(`${this.baseUrl()}/${search}`, {
+      params: queryParams,
+    });
   }
 }
