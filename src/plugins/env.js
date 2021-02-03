@@ -1,4 +1,4 @@
-const BASE_API_URL = 'http://localhost:3000'; // default
+const BASE_API_URL = 'https://the-meal-api-test.herokuapp.com'; // default
 module.exports = {
   BASE_API_URL,
   install: (Vue, config) => {
